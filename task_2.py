@@ -1,12 +1,23 @@
-# 2.Пользователь вводит время в секундах.
-# Переведите время в часы, минуты и секунды
-# и выведите в формате чч:мм:сс.
-# Используйте форматирование строк.
-seconds = int(input('Введите время в секундах = '))
-seconds = seconds % (24 * 3600)
-hour = seconds // 3600
-seconds %= 3600
-minutes = seconds // 60
-seconds %= 60
-#print(f"Время в формате чч:мм:сс= {hour}:{minutes}:{seconds}")
-print("%02d:%02d:%02d" % (hour, minutes, seconds))
+# 2. Создайте собственный класс-исключение, обрабатывающий
+# ситуацию деления на нуль. Проверьте его работу на данных,
+# вводимых пользователем. При вводе пользователем нуля в
+# качестве делителя программа должна корректно обработать
+# эту ситуацию и не завершиться с ошибкой.
+
+class MyZeroDivision(Exception):
+    def init(self, text):
+        self.txt = text
+
+
+a = int(input("Введите целое число: "))
+
+try:
+    if a == 0:
+        raise MyZeroDivision("Делить на 0 нельзя!")
+    else:
+        print(int(100 / a))
+except ValueError:
+    print("Ошибка в значении типа!")
+except MyZeroDivision as mr:
+    print(mr)
+
